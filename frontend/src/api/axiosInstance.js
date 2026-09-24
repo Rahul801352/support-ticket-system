@@ -1,14 +1,21 @@
 import axios from 'axios';
 
-// Support VITE_API_BASE_URL, REACT_APP_API_URL, or fallback to http://localhost:5000/api
-const API_BASE_URL = 
+let rawBaseUrl = 
   import.meta?.env?.VITE_API_BASE_URL || 
   process.env.VITE_API_BASE_URL || 
   process.env.REACT_APP_API_URL || 
   'http://localhost:5000/api';
 
+// Clean trailing slashes
+let cleanBaseUrl = rawBaseUrl.trim().replace(/\/+$/, '');
+
+// Ensure /api suffix exists
+if (!cleanBaseUrl.endsWith('/api')) {
+  cleanBaseUrl += '/api';
+}
+
 const axiosInstance = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: cleanBaseUrl,
   headers: {
     'Content-Type': 'application/json'
   }

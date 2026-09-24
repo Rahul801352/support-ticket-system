@@ -11,7 +11,7 @@ const app = express();
 
 // CORS configuration
 app.use(cors({
-  origin: process.env.CLIENT_URL || '*',
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -20,14 +20,21 @@ app.use(cors({
 app.use(express.json());
 
 // Health Check API Endpoint
-app.get('/api/health', (req, res) => {
+const healthCheck = (req, res) => {
   res.status(200).json({ status: 'ok', service: 'Support Ticket System API', timestamp: new Date().toISOString() });
-});
+};
+app.get('/api/health', healthCheck);
+app.get('/health', healthCheck);
 
-// API Routes
+// API Routes (Mounted at both /api/ and / for maximum URL compatibility)
 app.use('/api/auth', authRoutes);
+app.use('/auth', authRoutes);
+
 app.use('/api/tickets', ticketRoutes);
+app.use('/tickets', ticketRoutes);
+
 app.use('/api/users', userRoutes);
+app.use('/users', userRoutes);
 
 // Centralized 404 Route Handler
 app.use(notFoundHandler);
