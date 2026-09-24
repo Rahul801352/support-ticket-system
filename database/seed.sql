@@ -11,13 +11,13 @@ TRUNCATE TABLE users;
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- Password for all seed users is: Password123!
--- Bcrypt Hash: $2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi (Password123!)
+-- Bcrypt Hash: $2b$10$M/UzByRg2fLnKyRee1Y5e.Li77aZdk/RyoRKbKcAqmdCMCRta3Afe (Password123!)
 -- 1. Insert seed users (2 Customers, 2 Support Agents)
 INSERT INTO users (id, name, email, password_hash, role) VALUES
-(1, 'John Doe', 'john@example.com', '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'customer'),
-(2, 'Jane Smith', 'jane@example.com', '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'customer'),
-(3, 'Sarah Connor', 'agent.sarah@example.com', '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'agent'),
-(4, 'Mike Ross', 'agent.mike@example.com', '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'agent');
+(1, 'John Doe', 'john@example.com', '$2b$10$M/UzByRg2fLnKyRee1Y5e.Li77aZdk/RyoRKbKcAqmdCMCRta3Afe', 'customer'),
+(2, 'Jane Smith', 'jane@example.com', '$2b$10$M/UzByRg2fLnKyRee1Y5e.Li77aZdk/RyoRKbKcAqmdCMCRta3Afe', 'customer'),
+(3, 'Sarah Connor', 'agent.sarah@example.com', '$2b$10$M/UzByRg2fLnKyRee1Y5e.Li77aZdk/RyoRKbKcAqmdCMCRta3Afe', 'agent'),
+(4, 'Mike Ross', 'agent.mike@example.com', '$2b$10$M/UzByRg2fLnKyRee1Y5e.Li77aZdk/RyoRKbKcAqmdCMCRta3Afe', 'agent');
 
 -- 2. Insert sample tickets
 INSERT INTO tickets (id, user_id, subject, description, priority, status, assigned_to) VALUES

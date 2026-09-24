@@ -1,6 +1,8 @@
 require('dotenv').config();
 const mysql = require('mysql2/promise');
 
+const DEMO_PASSWORD_HASH = '$2b$10$M/UzByRg2fLnKyRee1Y5e.Li77aZdk/RyoRKbKcAqmdCMCRta3Afe';
+
 function createSqlitePool() {
   const Database = require('better-sqlite3');
   const sqlite = new Database(':memory:');
@@ -41,10 +43,10 @@ function createSqlitePool() {
 
     -- Seed Initial Demo Users (Password: Password123!)
     INSERT OR IGNORE INTO users (id, name, email, password_hash, role) VALUES
-    (1, 'John Doe', 'john@example.com', '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'customer'),
-    (2, 'Jane Smith', 'jane@example.com', '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'customer'),
-    (3, 'Sarah Connor', 'agent.sarah@example.com', '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'agent'),
-    (4, 'Mike Ross', 'agent.mike@example.com', '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'agent');
+    (1, 'John Doe', 'john@example.com', '${DEMO_PASSWORD_HASH}', 'customer'),
+    (2, 'Jane Smith', 'jane@example.com', '${DEMO_PASSWORD_HASH}', 'customer'),
+    (3, 'Sarah Connor', 'agent.sarah@example.com', '${DEMO_PASSWORD_HASH}', 'agent'),
+    (4, 'Mike Ross', 'agent.mike@example.com', '${DEMO_PASSWORD_HASH}', 'agent');
 
     -- Seed Sample Tickets
     INSERT OR IGNORE INTO tickets (id, user_id, subject, description, priority, status, assigned_to) VALUES
