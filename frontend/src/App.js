@@ -46,6 +46,14 @@ function App() {
                 }
               />
               <Route
+                path="/customer/tickets/new"
+                element={
+                  <ProtectedRoute allowedRoles={['customer']}>
+                    <CreateTicketPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
                 path="/tickets/new"
                 element={
                   <ProtectedRoute allowedRoles={['customer']}>
@@ -53,12 +61,10 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-
-              {/* Shared Protected Route */}
               <Route
-                path="/tickets/:id"
+                path="/customer/tickets/:id"
                 element={
-                  <ProtectedRoute>
+                  <ProtectedRoute allowedRoles={['customer']}>
                     <TicketDetailPage />
                   </ProtectedRoute>
                 }
@@ -73,8 +79,35 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route
+                path="/agent/tickets"
+                element={
+                  <ProtectedRoute allowedRoles={['agent']}>
+                    <AgentDashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/agent/tickets/:id"
+                element={
+                  <ProtectedRoute allowedRoles={['agent']}>
+                    <TicketDetailPage />
+                  </ProtectedRoute>
+                }
+              />
 
-              {/* Catch-all 404 Route */}
+              {/* Shared Protected Route */}
+              <Route
+                path="/tickets/:id"
+                element={
+                  <ProtectedRoute>
+                    <TicketDetailPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* 404 Route */}
+              <Route path="/404" element={<NotFoundPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </main>
